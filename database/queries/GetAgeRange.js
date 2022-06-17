@@ -6,4 +6,13 @@ const Artist = require('../models/artist');
  * containing the min and max ages, like { min: 16, max: 45 }.
  */
 module.exports = () => {
+  return Artist.find({})
+  .sort({ age: 1 })
+  .then(sortedArtists => {
+    console.log(sortedArtists)
+    return {
+      min: sortedArtists[0].age,
+      max: sortedArtists[sortedArtists.length - 1].age
+    };
+  });
 };

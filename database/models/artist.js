@@ -15,6 +15,10 @@ const artistSchema = new Schema({
   albums: [AlbumSchema]
 });
 
+artistSchema.virtual('albumsCount').get(function() {
+  return this.albums.length
+})
+
 const Artist = mongoose.model('artist', artistSchema);
 
 module.exports = Artist;
